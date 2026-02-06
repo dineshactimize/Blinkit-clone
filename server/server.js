@@ -1,32 +1,34 @@
-// 1. Load Environment Variables (MUST BE TOP)
-require('dotenv').config(); 
-
 const express = require('express');
-const cors = require('cors');
-const path = require('path');
+const colors = require('colors');
+const dotenv = require('dotenv').config();
+const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
+const path = require('path');
+const cors = require('cors');
 
-// 2. Import Route Files
-const authRoutes = require('./routes/authRoutes');
-const productRoutes = require('./routes/productRoutes');
 
-// 3. Connect to MongoDB Atlas
 connectDB();
 
 const app = express();
 
-// 4. Middleware
-app.use(cors());           // Allows React to talk to this server
-app.use(express.json());   // Parses incoming JSON data
 
-// 5. Serve Static Images
-// This makes http://localhost:5000/uploads/image.jpg work
-app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+app.use(cors()); 
+app.use(express.json()); 
+app.use(express.urlencoded({ extended: false }));
 
-// 6. Mount Routes
-app.use('/api/auth', authRoutes);      // Login/Register
-app.use('/api/products', productRoutes); // Add/Get Products
 
-// 7. Start Server
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/products', require('./routes/productRoutes'));
+
+
+app.use('/api/cart', require('./routes/cart.routes'));   
+app.use('/api/orders', require('./routes/order.routes')); 
+
+app.use('/api/payment', require('./routes/payment.routes'));
+
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+app.use(errorHandler);
+
+const port = process.env.PORT || 5000;
+app.listen(port, () => console.log(`Server started on port ${port.yellow.bold}`));

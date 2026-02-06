@@ -20,6 +20,9 @@ const HomePage = () => {
 
     const vegetables = products.filter(p => p.category && p.category.toLowerCase().includes('veg'));
     const dairy = products.filter(p => p.category && (p.category.toLowerCase().includes('milk') || p.category.toLowerCase().includes('dairy')));
+    const drinks = products.filter(p => p.category && p.category.toLowerCase().includes('drinks'));
+        const snacks = products.filter(p => p.category && p.category.toLowerCase().includes('snacks'));
+
 
     return (
         <Box sx={{ bgcolor: '#fff', minHeight: '100vh' }}>
@@ -33,7 +36,11 @@ const HomePage = () => {
                 {products.length > 0 ? (
                     <>
                         <ProductRow title="Dairy, Bread & Eggs" products={dairy.length > 0 ? dairy : products.slice(0, 4)} />
-                        <ProductRow title="Fresh Vegetables" products={vegetables.length > 0 ? vegetables : products.slice(4, 8)} />
+                        <ProductRow title="Fresh & Vegetables" products={vegetables.length > 0 ? vegetables : products.slice(4, 8)} />
+                        <ProductRow title="Cool Drinks & Juices" products={drinks.length > 0 ? drinks : products.slice(4, 8)} />
+                        <ProductRow title="Snacks & Munchies" products={snacks.length > 0 ? snacks : products.slice(4, 8)} />
+
+
                         <ProductRow title="Recommended for You" products={products} />
                     </>
                 ) : (

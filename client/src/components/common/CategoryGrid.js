@@ -1,38 +1,92 @@
 import React from 'react';
-import { Box, Grid } from '@mui/material';
+import { Box, Typography, Grid } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
-    { name: 'Vegetables', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-2_10.png' },
-    { name: 'Dairy', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-3_9.png' },
-    { name: 'Munchies', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-4_9.png' },
-    { name: 'Cold Drinks', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-5_4.png' },
-    { name: 'Instant Food', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-6_5.png' },
-    { name: 'Pharmacy', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-9_3.png' },
-    { name: 'Organic', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-10.png' },
-    { name: 'Baby Care', img: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-11.png' },
-    
+    { 
+        id: 1, 
+        keyword: 'Dairy,bread & Eggs', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-2_10.png' 
+    },
+    { 
+        id: 2, 
+        keyword: 'Fruits & Vegetables', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-3_9.png' 
+    },
+    { 
+        id: 3, 
+        keyword: 'Cool Drinks & Juices', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-4_9.png' 
+    },
+    { 
+        id: 4, 
+        keyword: 'Snacks & Munchies', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-5_4.png' 
+    },
+    { 
+        id: 5, 
+        keyword: 'Breakfast & Instant Food',
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-6_5.png' 
+    },
+    { 
+        id: 6, 
+        keyword: 'Tea,Coffee & Health Drink', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2025-11/Slice-7-1_0.png' 
+    },
+    { 
+        id: 7, 
+        keyword: 'Atta,Rice & Dal', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-10.png' 
+    },
+    { 
+        id: 8, 
+        keyword: 'Masala,Oil & More', 
+        image: 'https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=270/layout-engine/2022-11/Slice-11.png' 
+    }
 ];
 
 const CategoryGrid = () => {
+    const navigate = useNavigate();
+
     return (
-        <Box sx={{ mb: 4 }}>
-            <Grid container spacing={2}> {/* Increased spacing for better separation */}
-                {categories.map((cat, index) => (
-                    // Adjusted sizing: xs={3} means 4 items per row on mobile
-                    // md={1.2} means 10 items per row on desktop
-                    <Grid item xs={3} sm={2} md={1.2} key={index} sx={{ display: 'flex', flexDirection: 'column', alignItems: 'center', cursor: 'pointer' }}>
+        <Box sx={{ my: 3 }}>
+            <Grid container spacing={2}>
+                {categories.map((cat) => (
+                    <Grid item xs={3} sm={2} md={1.5} key={cat.id}>
                         <Box 
-                            component="img"
-                            src={cat.img} 
-                            alt={cat.name} 
+                            onClick={() => navigate(`/category/${cat.keyword}`)}
                             sx={{ 
-                                width: '100%', 
-                                maxWidth: '120px', // INCREASED from 80px to 120px
-                                height: 'auto',
+                                cursor: 'pointer', 
+                                textAlign: 'center',
                                 transition: 'transform 0.2s',
-                                '&:hover': { transform: 'scale(1.05)' } // Subtle zoom effect
-                            }} 
-                        />
+                                '&:hover': { transform: 'scale(1.05)' }
+                            }}
+                        >
+                            <Box sx={{ 
+                                bgcolor: '#eef4ff', 
+                                borderRadius: 3, 
+                                mb: 1, 
+                                overflow: 'hidden',
+                                // height: '100px', 
+                                // width:'0px',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'center'
+                            }}>
+                                <img 
+                                    src={cat.image} 
+                                    alt={cat.name} 
+                                    style={{ 
+                                        width: '130px', 
+                                        height: '90%', 
+                                        objectFit: 'contain' 
+                                    }} 
+                                />
+                            </Box>
+                            <Typography variant="caption" sx={{ fontWeight: 600, fontSize: '11px', lineHeight: 1.2 }}>
+                                {cat.name}
+                            </Typography>
+                        </Box>
                     </Grid>
                 ))}
             </Grid>

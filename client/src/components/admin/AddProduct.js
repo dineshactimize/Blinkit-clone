@@ -46,7 +46,6 @@ const AddProduct = () => {
                     value={category} onChange={(e) => setCategory(e.target.value)} 
                 />
                 
-                {/* File Input */}
                 <Button variant="contained" component="label" sx={{ mt: 2, mb: 2 }}>
                     Upload Image
                     <input 

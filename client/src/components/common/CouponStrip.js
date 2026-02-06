@@ -5,15 +5,15 @@ const CouponStrip = () => {
     return (
         <Box sx={{ 
             my: 4, 
-            display: 'flex',            // <--- Forces items to be in a ROW
-            justifyContent: 'space-between', // Spreads them out evenly
-            gap: 2                      // Adds space between the images
+            display: 'flex',          
+            justifyContent: 'space-between', 
+            gap: 2                     
         }}>
              
-            {/* Card 1: Pharmacy */}
+     
             <Box 
                 sx={{ 
-                    flex: 1, // <--- Makes it take equal width (1/3rd)
+                    flex: 1, 
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
@@ -32,10 +32,9 @@ const CouponStrip = () => {
                 />
             </Box>
 
-            {/* Card 2: Pet Care */}
             <Box 
                 sx={{ 
-                    flex: 1, // <--- Makes it take equal width (1/3rd)
+                    flex: 1, 
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
@@ -54,10 +53,10 @@ const CouponStrip = () => {
                 />
             </Box>
 
-            {/* Card 3: Baby Care */}
+        
             <Box 
                 sx={{ 
-                    flex: 1, // <--- Makes it take equal width (1/3rd)
+                    flex: 1, 
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
