@@ -25,8 +25,12 @@ app.use('/api/cart', require('./routes/cart.routes'));
 app.use('/api/orders', require('./routes/order.routes')); 
 
 app.use('/api/payment', require('./routes/payment.routes'));
+app.use('/api/orders', require('./routes/order.routes'));
 
 app.use('/uploads', express.static(path.join(__dirname, '/uploads')));
+
+app.use('/api/notifications', require('./routes/notificationRoutes'));
+// app.use('/api/notifications', require('./routes/notificationRoutes'));
 
 app.use(errorHandler);
 

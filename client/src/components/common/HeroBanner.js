@@ -1,24 +1,38 @@
 import React from 'react';
 import { Box, Grid } from '@mui/material';
+import bannerImg from '../../assets/HeroBanner.jpg';
+
 
 const HeroBanner = () => {
     return (
-        <Box sx={{ mt: 2, mb: 1 }}>
-            <Grid container spacing={2}>
-                <Grid item xs={12} md={8}>
-                    <Box 
+        <Box
+            sx={{
+                mt: { xs: 1, sm: 2 },
+                mb: { xs: 1, sm: 2 },
+                px: { xs: 1, sm: 2 },
+            }}
+        >
+            <Grid container>
+                <Grid item xs={12}>
+                    <Box
                         component="img"
-                        src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=2700/layout-engine/2026-01/Frame-1437256605-2-2.jpg"
-                        sx={{ 
-                            width: '100%', 
-                            height: { xs: '150px', md: '250px' },
-                            objectFit: 'cover',
+                        src={bannerImg}
+                        alt="Hero Banner"
+                        sx={{
+                            width: '100%',
+                            height: 'auto',
+                            maxHeight: {
+                                xs: 220,
+                                sm: 300,
+                                md: 380,
+                            },
+                            objectFit: 'contain',
                             borderRadius: '12px',
-                            cursor: 'pointer'
+                            display: 'block',
+                            backgroundColor: '#f5f5f5',
                         }}
                     />
                 </Grid>
-               
             </Grid>
         </Box>
     );

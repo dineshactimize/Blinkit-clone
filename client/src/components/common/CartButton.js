@@ -23,13 +23,13 @@ const CartButton = ({ product }) => {
     return (
         <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
             {quantity === 0 ? (
-                <Button 
-                    variant="outlined" 
-                    color="primary" 
+                <Button
+                    variant="outlined"
+                    color="primary"
                     onClick={handleAdd}
-                    sx={{ 
-                        textTransform: 'none', 
-                        fontWeight: 'bold', 
+                    sx={{
+                        textTransform: 'none',
+                        fontWeight: 'bold',
                         bgcolor: '#f7fff9',
                         border: '1px solid #0c831f',
                         color: '#0c831f',
@@ -41,26 +41,26 @@ const CartButton = ({ product }) => {
                 </Button>
             ) : (
                 <ButtonGroup size="small" variant="contained" disableElevation sx={{ bgcolor: '#0c831f', borderRadius: 1 }}>
-                    <Button 
-                        onClick={handleDecrease} 
+                    <Button
+                        onClick={handleDecrease}
                         sx={{ color: 'white', minWidth: '30px', px: 1, borderRight: 'none!important' }}
                     >
                         -
                     </Button>
-                    <Button 
-                        disabled 
-                        sx={{ 
-                            color: 'white!important', 
-                            fontWeight: 'bold', 
-                            minWidth: '30px', 
+                    <Button
+                        disabled
+                        sx={{
+                            color: 'white!important',
+                            fontWeight: 'bold',
+                            minWidth: '30px',
                             px: 1,
-                            '&.Mui-disabled': { color: 'white' } 
+                            '&.Mui-disabled': { color: 'white' }
                         }}
                     >
                         {quantity}
                     </Button>
-                    <Button 
-                        onClick={handleAdd} 
+                    <Button
+                        onClick={handleAdd}
                         sx={{ color: 'white', minWidth: '30px', px: 1 }}
                     >
                         +

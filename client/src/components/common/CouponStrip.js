@@ -1,29 +1,33 @@
 import React from 'react';
 import { Box } from '@mui/material';
+import pharmacyImg from '../../assets/pharamacy.avif';
+import petImg from '../../assets/pet.avif';
+import babyImg from '../../assets/daiper.avif';
+
 
 const CouponStrip = () => {
     return (
-        <Box sx={{ 
-            my: 4, 
-            display: 'flex',          
-            justifyContent: 'space-between', 
-            gap: 2                     
+        <Box sx={{
+            my: 4,
+            display: 'flex',
+            justifyContent: 'space-between',
+            gap: 2
         }}>
-             
-     
-            <Box 
-                sx={{ 
-                    flex: 1, 
+
+
+            <Box
+                sx={{
+                    flex: 1,
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
                 }}
             >
-                <Box 
+                <Box
                     component="img"
-                    src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=720/layout-engine/2023-07/pharmacy-WEB.jpg" 
-                    sx={{ 
-                        width: '100%', 
+                    src={pharmacyImg}
+                    sx={{
+                        width: '100%',
                         height: 'auto',
                         borderRadius: '12px',
                         boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
@@ -32,19 +36,19 @@ const CouponStrip = () => {
                 />
             </Box>
 
-            <Box 
-                sx={{ 
-                    flex: 1, 
+            <Box
+                sx={{
+                    flex: 1,
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
                 }}
             >
-                 <Box 
+                <Box
                     component="img"
-                    src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=720/layout-engine/2026-01/pet_crystal_WEB-1.png" 
-                    sx={{ 
-                        width: '100%', 
+                    src={petImg}
+                    sx={{
+                        width: '100%',
                         height: 'auto',
                         borderRadius: '12px',
                         boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',
@@ -53,20 +57,20 @@ const CouponStrip = () => {
                 />
             </Box>
 
-        
-            <Box 
-                sx={{ 
-                    flex: 1, 
+
+            <Box
+                sx={{
+                    flex: 1,
                     cursor: 'pointer',
                     transition: 'transform 0.2s',
                     '&:hover': { transform: 'scale(1.03)' }
                 }}
             >
-                 <Box 
+                <Box
                     component="img"
-                    src="https://cdn.grofers.com/cdn-cgi/image/f=auto,fit=scale-down,q=70,metadata=none,w=720/layout-engine/2026-01/baby_crystal_WEB-1.png" 
-                    sx={{ 
-                        width: '100%', 
+                    src={babyImg}
+                    sx={{
+                        width: '100%',
                         height: 'auto',
                         borderRadius: '12px',
                         boxShadow: '0px 2px 8px rgba(0,0,0,0.1)',

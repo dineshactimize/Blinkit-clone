@@ -1,13 +1,12 @@
 import React from 'react';
 import { Box, Typography, Card, CardMedia, CardContent, Button, IconButton } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
-import { addToCart, decreaseCart } from '../../features/cart/cartSlice'; // Make sure path is correct
+import { addToCart, decreaseCart } from '../../features/cart/cartSlice';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
 
 const ProductRow = ({ title, products }) => {
     const dispatch = useDispatch();
-    // Get cart items to check quantities
     const { cartItems } = useSelector((state) => state.cart);
 
     const handleAddToCart = (product) => {
@@ -23,16 +22,15 @@ const ProductRow = ({ title, products }) => {
             <Typography variant="h5" sx={{ fontWeight: 'bold', mb: 2 }}>
                 {title}
             </Typography>
-            
-            <Box sx={{ 
-                display: 'flex', 
-                overflowX: 'auto', 
-                gap: 2, 
+
+            <Box sx={{
+                display: 'flex',
+                overflowX: 'auto',
+                gap: 2,
                 pb: 2,
-                '&::-webkit-scrollbar': { display: 'none' } 
+                '&::-webkit-scrollbar': { display: 'none' }
             }}>
                 {products.map((product) => {
-                    // CHECK IF PRODUCT IS IN CART
                     const cartItem = cartItems.find(item => item._id === product._id);
                     const quantity = cartItem ? cartItem.cartQuantity : 0;
 
@@ -55,20 +53,18 @@ const ProductRow = ({ title, products }) => {
                                 <Typography variant="body2" color="text.secondary" sx={{ mb: 1 }}>
                                     {product.category}
                                 </Typography>
-                                
+
                                 <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
                                     <Typography variant="subtitle1" sx={{ fontWeight: 'bold' }}>
                                         ₹{product.price}
                                     </Typography>
-                                    
-                                    {/* --- BUTTON LOGIC START --- */}
+
                                     {quantity > 0 ? (
-                                        // COUNTER BUTTONS (+ 1 -)
-                                        <Box sx={{ 
-                                            display: 'flex', 
-                                            alignItems: 'center', 
-                                            bgcolor: '#0c831f', 
-                                            borderRadius: 1, 
+                                        <Box sx={{
+                                            display: 'flex',
+                                            alignItems: 'center',
+                                            bgcolor: '#0c831f',
+                                            borderRadius: 1,
                                             color: 'white',
                                             height: '32px'
                                         }}>
@@ -81,14 +77,14 @@ const ProductRow = ({ title, products }) => {
                                             </IconButton>
                                         </Box>
                                     ) : (
-                                        // ADD BUTTON
-                                        <Button 
-                                            variant="outlined" 
-                                            size="small" 
+
+                                        <Button
+                                            variant="outlined"
+                                            size="small"
                                             onClick={() => handleAddToCart(product)}
-                                            sx={{ 
-                                                color: '#0c831f', 
-                                                borderColor: '#0c831f', 
+                                            sx={{
+                                                color: '#0c831f',
+                                                borderColor: '#0c831f',
                                                 fontWeight: 'bold',
                                                 bgcolor: '#f7fff9',
                                                 minWidth: '70px',
@@ -98,8 +94,8 @@ const ProductRow = ({ title, products }) => {
                                             ADD
                                         </Button>
                                     )}
-                                    {/* --- BUTTON LOGIC END --- */}
-                                    
+
+
                                 </Box>
                             </CardContent>
                         </Card>

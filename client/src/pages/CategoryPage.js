@@ -8,6 +8,7 @@ import Navbar from '../components/common/Navbar';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import AddIcon from '@mui/icons-material/Add';
 import RemoveIcon from '@mui/icons-material/Remove';
+import Footer from '../components/common/Footer';
 
 const CategoryPage = () => {
   const { slug } = useParams();
@@ -26,7 +27,7 @@ const CategoryPage = () => {
   );
 
   return (
-    <Box sx={{ bgcolor: '#f5f5f5', minHeight: '100vh' }}>
+    <Box sx={{ bgcolor: '#ffffff', minHeight: '100vh' }}>
       <Navbar />
 
       <Container maxWidth="lg" sx={{ mt: 3, pb: 8 }}>
@@ -176,6 +177,7 @@ const CategoryPage = () => {
           </Box>
         )}
       </Container>
+      <Footer/>
     </Box>
   );
 };

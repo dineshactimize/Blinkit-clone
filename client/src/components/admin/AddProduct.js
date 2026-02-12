@@ -18,11 +18,11 @@ const AddProduct = () => {
         formData.append('name', name);
         formData.append('price', price);
         formData.append('category', category);
-        formData.append('image', image); 
+        formData.append('image', image);
 
         dispatch(createProduct(formData));
-        
-       
+
+
         setName('');
         setPrice('');
         setCategory('');
@@ -33,25 +33,25 @@ const AddProduct = () => {
         <Paper elevation={3} sx={{ p: 3, maxWidth: 500, margin: '20px auto' }}>
             <Typography variant="h6" sx={{ mb: 2 }}>Add New Product</Typography>
             <Box component="form" onSubmit={onSubmit}>
-                <TextField 
+                <TextField
                     fullWidth label="Product Name" margin="normal"
-                    value={name} onChange={(e) => setName(e.target.value)} 
+                    value={name} onChange={(e) => setName(e.target.value)}
                 />
-                <TextField 
+                <TextField
                     fullWidth label="Price" margin="normal" type="number"
-                    value={price} onChange={(e) => setPrice(e.target.value)} 
+                    value={price} onChange={(e) => setPrice(e.target.value)}
                 />
-                <TextField 
+                <TextField
                     fullWidth label="Category (e.g. Milk, Veg)" margin="normal"
-                    value={category} onChange={(e) => setCategory(e.target.value)} 
+                    value={category} onChange={(e) => setCategory(e.target.value)}
                 />
-                
+
                 <Button variant="contained" component="label" sx={{ mt: 2, mb: 2 }}>
                     Upload Image
-                    <input 
-                        type="file" 
-                        hidden 
-                        onChange={(e) => setImage(e.target.files[0])} 
+                    <input
+                        type="file"
+                        hidden
+                        onChange={(e) => setImage(e.target.files[0])}
                     />
                 </Button>
                 {image && <Typography variant="caption" display="block">{image.name}</Typography>}
