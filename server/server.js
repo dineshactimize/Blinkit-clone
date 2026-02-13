@@ -13,7 +13,8 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('*', (req, res) => {
+// Express 5 requires a named parameter for wildcards
+app.get('/*', (req, res) => {
   res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
 });
 
