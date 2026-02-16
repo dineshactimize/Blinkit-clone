@@ -56,22 +56,22 @@ const HomePage = () => {
           <>
             <ProductRow
               title="Dairy, Bread & Eggs"
-              products={dairy.length ? dairy : products.slice(0, 4)}
+              products={dairy?.length ? dairy : products.slice(0, 4)}
             />
 
             <ProductRow
               title="Fresh & Vegetables"
-              products={vegetables.length ? vegetables : products.slice(4, 8)}
+              products={vegetables?.length ? vegetables : products.slice(4, 8)}
             />
 
             <ProductRow
               title="Cool Drinks & Juices"
-              products={drinks.length ? drinks : products.slice(8, 12)}
+              products={drinks?.length ? drinks : products.slice(8, 12)}
             />
 
             <ProductRow
               title="Snacks & Munchies"
-              products={snacks.length ? snacks : products.slice(12, 16)}
+              products={snacks?.length ? snacks : products.slice(12, 16)}
             />
 
             <ProductRow
