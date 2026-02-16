@@ -22,20 +22,20 @@ const HomePage = () => {
   }, [dispatch]);
 
   // ✅ Safe filters (no crash possible)
-  const vegetables = products.filter((p) =>
+  const vegetables = products?.filter((p) =>
     p.category?.toLowerCase().includes('veg')
   );
 
-  const dairy = products.filter((p) =>
+  const dairy = products?.filter((p) =>
     p.category?.toLowerCase().includes('milk') ||
     p.category?.toLowerCase().includes('dairy')
   );
 
-  const drinks = products.filter((p) =>
+  const drinks = products?.filter((p) =>
     p.category?.toLowerCase().includes('drinks')
   );
 
-  const snacks = products.filter((p) =>
+  const snacks = products?.filter((p) =>
     p.category?.toLowerCase().includes('snacks')
   );
 
