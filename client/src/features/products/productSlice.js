@@ -68,9 +68,11 @@ export const productSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(getProducts.fulfilled, (state, action) => {
-                state.products = action.payload;
-            })
+.addCase(getProducts.fulfilled, (state, action) => {
+    state.products = action.payload.products || [];
+});
+
+
             .addCase(createProduct.fulfilled, (state, action) => {
                 state.products.push(action.payload);
             })
