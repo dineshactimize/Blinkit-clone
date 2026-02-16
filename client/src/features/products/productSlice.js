@@ -1,41 +1,92 @@
-import axios from 'axios';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from '../../api/axiosConfig'; 
 
-const API = axios.create({
-    // Logic: If on localhost, use port 5000. If on Render, use the live URL.
-    baseURL: window.location.hostname === 'localhost' 
-        ? 'http://localhost:5000/api' 
-        : 'https://blinkit-clone-qd0s.onrender.com/api',
-});
+const initialState = {
+    products: [],
+    isLoading: false,
+    isError: false,
+    isSuccess: false,
+    message: ''
+};
 
-API.interceptors.request.use((req) => {
-    let token = null;
-
-    // 1. Try getting token directly
-    const storedToken = localStorage.getItem('token');
-    
-    // 2. Try getting token from user object (Redux persist style)
-    const storedUser = localStorage.getItem('user');
-
-    if (storedToken) {
-        token = storedToken;
-    } else if (storedUser) {
-        try {
-            const parsedUser = JSON.parse(storedUser);
-            // Check if user object has token inside it
-            if (parsedUser && parsedUser.token) {
-                token = parsedUser.token;
-            }
-        } catch (error) {
-            console.error("AXIOS: Error parsing user from localStorage", error);
-        }
+export const getProducts = createAsyncThunk('products/getAll', async (_, thunkAPI) => {
+    try {
+        const response = await axios.get('/products');
+        return response.data;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message;
+        return thunkAPI.rejectWithValue(message);
     }
-
-    if (token) {
-        req.headers.Authorization = `Bearer ${token}`;
-    } 
-    // Removed the "else warn" because it spams console on public requests (like getting products)
-
-    return req;
 });
 
-export default API;
+export const createProduct = createAsyncThunk('products/create', async (productData, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const config = { headers: { Authorization: `Bearer ${token}` } };
+        const response = await axios.post('/products', productData, config);
+        return response.data;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const deleteProduct = createAsyncThunk('products/delete', async (id, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const config = { headers: { Authorization: `Bearer ${token}` } };
+        await axios.delete(`/products/${id}`, config);
+        return id; 
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const updateProduct = createAsyncThunk('products/update', async ({ id, productData }, thunkAPI) => {
+    try {
+        const token = thunkAPI.getState().auth.user.token;
+        const config = { headers: { Authorization: `Bearer ${token}` } };
+        const response = await axios.put(`/products/${id}`, productData, config);
+        return response.data;
+    } catch (error) {
+        const message = (error.response && error.response.data && error.response.data.message) || error.message;
+        return thunkAPI.rejectWithValue(message);
+    }
+});
+
+export const productSlice = createSlice({
+    name: 'product',
+    initialState,
+    reducers: {
+        reset: (state) => {
+            state.isLoading = false;
+            state.isSuccess = false;
+            state.isError = false;
+            state.message = '';
+        },
+    },
+    extraReducers: (builder) => {
+        builder
+.addCase(getProducts.fulfilled, (state, action) => {
+    state.products = action.payload.products || [];
+})
+
+
+            .addCase(createProduct.fulfilled, (state, action) => {
+                state.products.push(action.payload);
+            })
+            .addCase(deleteProduct.fulfilled, (state, action) => {
+                state.products = state.products.filter((product) => product._id !== action.payload);
+            })
+            .addCase(updateProduct.fulfilled, (state, action) => {
+                const index = state.products.findIndex((product) => product._id === action.payload._id);
+                if (index !== -1) {
+                    state.products[index] = action.payload;
+                }
+            });
+    },
+});
+
+export const { reset } = productSlice.actions;
+export default productSlice.reducer;
