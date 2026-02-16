@@ -73,7 +73,7 @@ function App() {
                 const register = await navigator.serviceWorker.register('/sw.js');
 
                
-                const publicVapidKey = "BJvRr7c1NZNUQzbSod4ii3_zgjHYS8oNKBoicythICfnqc-QrkgmhRHVeerO4ejha6VkxwXAl54gMGe-9qbCDDk"; 
+                const publicVapidKey = "BDjhi1ju78Ex6slj88rPsmr7c3ps_7ZOgVVEvfQn2D1IdIKUTgsQPk80w7rc5mqJawQFmt-bvkUGaYQEu2vhEwo"; 
 
                 const subscription = await register.pushManager.subscribe({
                     userVisibleOnly: true,

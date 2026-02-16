@@ -14,7 +14,7 @@ router.post('/', protect, async (req, res) => {
             { 
                 $set: { 
                     items: items, 
-                    totalAmount: totalAmount 
+                    totalAmount: totalAmount
                 } 
             },
             { new: true, upsert: true } 
