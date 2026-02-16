@@ -69,8 +69,18 @@ export const productSlice = createSlice({
     extraReducers: (builder) => {
         builder
 .addCase(getProducts.fulfilled, (state, action) => {
-    state.products = action.payload.products || [];
+    state.isLoading = false;
+
+    // ✅ handle ALL backend formats safely
+    if (Array.isArray(action.payload)) {
+        state.products = action.payload;
+    } else if (Array.isArray(action.payload.products)) {
+        state.products = action.payload.products;
+    } else {
+        state.products = [];
+    }
 })
+
 
 
             .addCase(createProduct.fulfilled, (state, action) => {
