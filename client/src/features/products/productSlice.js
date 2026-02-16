@@ -70,7 +70,7 @@ export const productSlice = createSlice({
         builder
 .addCase(getProducts.fulfilled, (state, action) => {
     state.products = action.payload.products || [];
-});
+})
 
 
             .addCase(createProduct.fulfilled, (state, action) => {
