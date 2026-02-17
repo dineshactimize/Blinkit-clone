@@ -128,7 +128,7 @@ const CartPage = () => {
                                     <Box key={item._id}>
                                         <Box sx={{ p: 2, display: 'flex', alignItems: 'center', gap: 2, bgcolor: 'white' }}>
                                             <img 
-                                                src={`ttps://blinkit-clone-qd0s.onrender.com${item.image}`} 
+                                                src={`https://blinkit-clone-qd0s.onrender.com${item.image}`} 
                                                 alt={item.name} 
                                                 style={{ width: 64, height: 64, objectFit: 'contain', borderRadius: '8px', border: '1px solid #f0f0f0' }} 
                                             />

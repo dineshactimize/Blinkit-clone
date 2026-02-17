@@ -127,7 +127,7 @@ const ProductRow = ({ title, products }) => {
                 <CardMedia
                   component="img"
                   height="140"
-                  image={`ttps://blinkit-clone-qd0s.onrender.com${product.image}`}
+                  image={`https://blinkit-clone-qd0s.onrender.com${product.image}`}
                   alt={product.name}
                   sx={{ p: 2, objectFit: 'contain' }}
                 />

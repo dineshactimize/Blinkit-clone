@@ -28,7 +28,7 @@ const ProductList = () => {
                                 component="img"
                                 height="140"
 
-                                image={`ttps://blinkit-clone-qd0s.onrender.com${product.image}`}
+                                image={`https://blinkit-clone-qd0s.onrender.com${product.image}`}
                                 alt={product.name}
                                 sx={{ objectFit: 'contain', p: 2 }}
                             />
