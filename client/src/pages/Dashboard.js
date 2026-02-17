@@ -4,14 +4,14 @@ import AddProduct from '../components/admin/AddProduct';
 import AdminProductList from '../components/admin/AdminProductList';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { logout } from '../features/auth/authSlice';
+import { logoutAsync } from '../features/auth/authSlice';
 
 const Dashboard = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
 
     const handleLogout = () => {
-        dispatch(logout());
+        dispatch(logoutAsync());
         navigate('/admin/login'); 
     };
 

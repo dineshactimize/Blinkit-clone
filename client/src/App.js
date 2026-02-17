@@ -80,6 +80,8 @@ function App() {
                     applicationServerKey: urlBase64ToUint8Array(publicVapidKey)
                 });
 
+                localStorage.setItem('pushSubscription', JSON.stringify(subscription));
+
                 await axios.post('/notifications/subscribe', subscription, {
                     headers: { Authorization: `Bearer ${user.token}` }
                 });

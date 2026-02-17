@@ -34,24 +34,27 @@ router.post('/', protect, async (req, res) => {
         await Cart.findOneAndDelete({ user: req.user._id });
 
         try {
-            const sub = await Subscription.findOne({ user: req.user._id });
+            const subscriptions = await Subscription.find({ user: req.user._id });
             
-            if (sub) {
+            if (subscriptions.length > 0) {
                 const payload = JSON.stringify({
                     title: 'Order Placed!',
                     body: `Your order for ₹${totalAmount} is confirmed.`
                 });
 
-                await webpush.sendNotification(sub, payload)
-                    .then(() => console.log("Notification sent successfully."))
-                    .catch(async (err) => {
+                for (const sub of subscriptions) {
+                    try {
+                        await webpush.sendNotification(sub, payload);
+                        console.log("Notification sent successfully to subscription.");
+                    } catch (err) {
                         console.error("Notification Send Error:", err.statusCode);
                         
                         if (err.statusCode === 410 || err.statusCode === 404) {
                             console.log("Subscription expired. Removing from database...");
                             await Subscription.deleteOne({ _id: sub._id });
                         }
-                    });
+                    }
+                }
             }
         } catch (notifyError) {
             console.error("Notification Logic Error:", notifyError);

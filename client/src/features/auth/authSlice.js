@@ -37,6 +37,24 @@ export const login = createAsyncThunk('auth/login', async (userData, thunkAPI) =
     }
 });
 
+export const logoutAsync = createAsyncThunk('auth/logoutAsync', async (_, thunkAPI) => {
+    try {
+        const subscription = JSON.parse(localStorage.getItem('pushSubscription'));
+        if (subscription) {
+            await API.post('/notifications/unsubscribe', subscription, {
+                headers: { Authorization: `Bearer ${localStorage.getItem('user') ? JSON.parse(localStorage.getItem('user')).token : ''}` }
+            });
+            localStorage.removeItem('pushSubscription');
+        }
+        localStorage.removeItem('user');
+    } catch (error) {
+        console.error('Logout error:', error);
+        // Still proceed to logout even if unsubscribe fails
+        localStorage.removeItem('pushSubscription');
+        localStorage.removeItem('user');
+    }
+});
+
 const authSlice = createSlice({
     name: 'auth',
     initialState,
@@ -81,9 +99,13 @@ const authSlice = createSlice({
                 state.isError = true;
                 state.message = action.payload;
                 state.user = null;
+            })
+            .addCase(logoutAsync.fulfilled, (state) => {
+                state.user = null;
             });
     }
 });
 
 export const { reset, logout } = authSlice.actions;
+export { logoutAsync };
 export default authSlice.reducer;

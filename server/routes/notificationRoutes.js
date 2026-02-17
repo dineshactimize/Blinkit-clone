@@ -32,4 +32,16 @@ router.post('/subscribe', protect, async (req, res) => {
     }
 });
 
+router.post('/unsubscribe', protect, async (req, res) => {
+    const subscription = req.body;
+
+    try {
+        await Subscription.deleteOne({ endpoint: subscription.endpoint, user: req.user._id });
+        res.status(200).json({ message: "Unsubscribed successfully!" });
+    } catch (error) {
+        console.error("Unsubscribe DB Error:", error);
+        res.status(500).json({ message: 'Failed to unsubscribe' });
+    }
+});
+
 module.exports = router;

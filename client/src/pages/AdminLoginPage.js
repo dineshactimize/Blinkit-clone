@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { login, logout, reset } from '../features/auth/authSlice';
+import { login, logoutAsync, reset } from '../features/auth/authSlice';
 import { Container, Box, TextField, Button, Typography, Paper, Alert, CircularProgress } from '@mui/material';
 
 const AdminLoginPage = () => {

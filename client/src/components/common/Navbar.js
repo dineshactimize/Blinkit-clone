@@ -16,7 +16,7 @@ import PersonIcon from '@mui/icons-material/Person';
 import AdminPanelSettingsIcon from '@mui/icons-material/AdminPanelSettings';
 
 import { useSelector, useDispatch } from 'react-redux';
-import { logout, reset } from '../../features/auth/authSlice';
+import { logoutAsync, reset } from '../../features/auth/authSlice';
 import { getTotals } from '../../features/cart/cartSlice';
 import { useNavigate } from 'react-router-dom';
 
@@ -77,7 +77,7 @@ const Navbar = () => {
     const handleDrawerToggle = () => setMobileOpen(!mobileOpen);
 
     const onLogout = () => {
-        dispatch(logout());
+        dispatch(logoutAsync());
         dispatch(reset());
         handleClose();
         setMobileOpen(false);
