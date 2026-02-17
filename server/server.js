@@ -5,7 +5,7 @@ const { errorHandler } = require('./middleware/errorMiddleware');
 const connectDB = require('./config/db');
 const path = require('path');
 const cors = require('cors');
-const webpush = require('web-push'); // ✅ ADDED
+const webpush = require('web-push');
 
 connectDB();
 
@@ -19,20 +19,18 @@ const app = express();
 
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-// Fallback for React routing
 
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 
-// ✅ VAPID CONFIG — MUST BE GLOBAL & ONLY ONCE
 webpush.setVapidDetails(
-  'mailto:dinesh.actimize@gmail.com',           // ⚠️ MUST be mailto
+  'mailto:dinesh.actimize@gmail.com',
   process.env.VAPID_PUBLIC_KEY,
   process.env.VAPID_PRIVATE_KEY
 );
 
-// ROUTES
+
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/products', require('./routes/productRoutes'));
 

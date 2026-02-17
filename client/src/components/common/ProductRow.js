@@ -1,13 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
-import {
-  Box,
-  Typography,
-  Card,
-  CardMedia,
-  CardContent,
-  Button,
-  IconButton
-} from '@mui/material';
+import {Box,Typography,Card,CardMedia,CardContent,Button,IconButton} from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import { addToCart, decreaseCart } from '../../features/cart/cartSlice';
 import AddIcon from '@mui/icons-material/Add';
@@ -56,7 +48,6 @@ const ProductRow = ({ title, products }) => {
       </Typography>
 
       <Box sx={{ position: 'relative' }}>
-        {/* PREV */}
         {showPrev && (
           <IconButton
             onClick={() => scroll('left')}
@@ -76,7 +67,7 @@ const ProductRow = ({ title, products }) => {
           </IconButton>
         )}
 
-        {/* NEXT */}
+     
         {showNext && (
           <IconButton
             onClick={() => scroll('right')}
@@ -96,7 +87,7 @@ const ProductRow = ({ title, products }) => {
           </IconButton>
         )}
 
-        {/* PRODUCTS */}
+      
         <Box
           ref={scrollRef}
           sx={{

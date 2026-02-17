@@ -49,7 +49,6 @@ export const logoutAsync = createAsyncThunk('auth/logoutAsync', async (_, thunkA
         localStorage.removeItem('user');
     } catch (error) {
         console.error('Logout error:', error);
-        // Still proceed to logout even if unsubscribe fails
         localStorage.removeItem('pushSubscription');
         localStorage.removeItem('user');
     }

@@ -71,7 +71,6 @@ export const productSlice = createSlice({
 .addCase(getProducts.fulfilled, (state, action) => {
     state.isLoading = false;
 
-    // ✅ handle ALL backend formats safely
     if (Array.isArray(action.payload)) {
         state.products = action.payload;
     } else if (Array.isArray(action.payload.products)) {

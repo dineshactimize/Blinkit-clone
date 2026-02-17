@@ -13,7 +13,6 @@ import CouponStrip from '../components/common/CouponStrip';
 const HomePage = () => {
     const dispatch = useDispatch();
 
-    // ✅ FORCE products to always be an array
     const products = useSelector((state) =>
         Array.isArray(state.product.products)
             ? state.product.products
