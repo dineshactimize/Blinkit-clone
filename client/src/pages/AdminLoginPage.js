@@ -28,7 +28,7 @@ const AdminLoginPage = () => {
             } else {
                 
                 setAccessError("Access Denied.");
-                dispatch(logout()); 
+                dispatch(logoutAsync()); 
                 dispatch(reset());
             }
         }
