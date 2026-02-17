@@ -57,7 +57,7 @@ const OrdersPage = () => {
                             <Divider sx={{ mb: 2 }} />
                             {order.orderItems.map((item, index) => (
                                 <Box key={index} sx={{ display: 'flex', alignItems: 'center', mb: 2 }}>
-                                    <img src={`http://localhost:5000${item.image}`} alt={item.name} style={{ width: 50, height: 50, objectFit: 'contain', marginRight: 15 }} />
+                                    <img src={`ttps://blinkit-clone-qd0s.onrender.com${item.image}`} alt={item.name} style={{ width: 50, height: 50, objectFit: 'contain', marginRight: 15 }} />
                                     <Box sx={{ flexGrow: 1 }}>
                                         <Typography variant="body2" fontWeight="bold">{item.name}</Typography>
                                         <Typography variant="caption" color="text.secondary">Qty: {item.quantity}</Typography>

@@ -84,7 +84,7 @@ const CategoryPage = () => {
                   >
                     <Box
                       component="img"
-                      src={`http://localhost:5000${product.image}`}
+                      src={`ttps://blinkit-clone-qd0s.onrender.com${product.image}`}
                       alt={product.name}
                       sx={{
                         maxHeight: '100%',

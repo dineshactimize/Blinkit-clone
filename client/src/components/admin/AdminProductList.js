@@ -75,7 +75,7 @@ const AdminProductList = () => {
                         {sortedProducts.map((product) => (
                             <TableRow key={product._id}>
                                 <TableCell>
-                                    <Avatar src={`http://localhost:5000${product.image}`} variant="rounded" sx={{ width: 50, height: 50 }} />
+                                    <Avatar src={`ttps://blinkit-clone-qd0s.onrender.com${product.image}`} variant="rounded" sx={{ width: 50, height: 50 }} />
                                 </TableCell>
                                 <TableCell>{product.name}</TableCell>
                                 <TableCell>
